@@ -30,7 +30,7 @@ const AddCustomer = () => {
 
   return (
     <>
-      <h2 className="font-semibold text-xl text-yellow-100">AddCustomer</h2>
+      <h2 className="font-semibold text-xl text-yellow-100">Add Customer</h2>
       <form onSubmit={handleNewCustomer} className="flex gap-4">
         <Input
           name="firstName"

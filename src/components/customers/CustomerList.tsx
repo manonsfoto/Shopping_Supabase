@@ -9,7 +9,6 @@ const CustomerList = () => {
 
     if (error) {
       console.error(error);
-      alert("this email already exists 🙏");
     }
     if (data) {
       setCustomers(data);
@@ -22,16 +21,16 @@ const CustomerList = () => {
   return (
     <>
       <h2 className="font-semibold text-xl text-yellow-100">
-        CustomerList ({customers.length})
+        Customer List ({customers.length})
       </h2>
       <ul>
         {customers?.map((singleCustomer: TCustomer) => (
           <li key={singleCustomer.id}>
-            <span className="font-bold text-green-300">id:</span>{" "}
+            <span className="font-bold text-green-200">id:</span>{" "}
             {singleCustomer.id}{" "}
-            <span className="font-bold text-green-300">full name:</span>{" "}
+            <span className="font-bold text-green-200">full name:</span>{" "}
             {singleCustomer.first_name} {singleCustomer.last_name}{" "}
-            <span className="font-bold text-green-300">email:</span>{" "}
+            <span className="font-bold text-green-200">email:</span>{" "}
             {singleCustomer.email}
           </li>
         ))}
