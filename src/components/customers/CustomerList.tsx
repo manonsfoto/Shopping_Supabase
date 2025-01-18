@@ -16,7 +16,7 @@ const CustomerList = () => {
   }
   useEffect(() => {
     getCustomerList();
-  }, [customers]);
+  }, [setCustomers]);
 
   return (
     <>

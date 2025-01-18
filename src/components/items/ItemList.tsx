@@ -12,11 +12,12 @@ const ItemList = () => {
     }
     if (data) {
       setItems(data);
+      console.log("Item Data:", data);
     }
   }
   useEffect(() => {
     getItemList();
-  }, [items]);
+  }, [setItems]);
 
   return (
     <>
