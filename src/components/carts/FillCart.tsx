@@ -1,5 +1,5 @@
 const FillCart = () => {
-  return <h1>FillCart</h1>;
+  return <h2>FillCart</h2>;
 };
 
 export default FillCart;

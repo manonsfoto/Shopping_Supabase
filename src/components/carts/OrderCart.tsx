@@ -1,5 +1,5 @@
 const OrderCart = () => {
-  return <h1>OrderCart</h1>;
+  return <h2>OrderCart</h2>;
 };
 
 export default OrderCart;

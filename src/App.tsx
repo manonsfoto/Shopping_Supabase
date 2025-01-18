@@ -10,29 +10,29 @@ import OrderList from "./components/orders/OrderList";
 
 function App() {
   return (
-    <>
-      <section>
-        <h1>Customers</h1>
+    <main className="flex flex-col gap-5 p-10">
+      <section className="p-5 border-solid border-2 border-stone-200 rounded-2xl flex flex-col gap-4">
+        <h1 className="font-bold text-2xl mb-5">Customers</h1>
         <AddCustomer />
         <CustomerList />
       </section>
-      <section>
-        <h1>Items</h1>
+      <section className="p-5 border-solid border-2 border-stone-200 rounded-2xl flex flex-col gap-4">
+        <h1 className="font-bold text-2xl mb-5">Items</h1>
         <AddItem />
         <ItemList />
       </section>
-      <section>
-        <h1>Carts</h1>
+      <section className="p-5 border-solid border-2 border-stone-200 rounded-2xl flex flex-col gap-4">
+        <h1 className="font-bold text-2xl mb-5">Carts</h1>
         <AddCart />
         <CartList />
         <FillCart />
         <OrderCart />
       </section>
-      <section>
-        <h1>Orders</h1>
+      <section className="p-5 border-solid border-2 border-stone-200 rounded-2xl flex flex-col gap-4">
+        <h1 className="font-bold text-2xl mb-5">Orders</h1>
         <OrderList />
       </section>
-    </>
+    </main>
   );
 }
 

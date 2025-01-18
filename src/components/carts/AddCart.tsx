@@ -1,5 +1,5 @@
 const AddCart = () => {
-  return <h1>AddCart</h1>;
+  return <h2>AddCart</h2>;
 };
 
 export default AddCart;
