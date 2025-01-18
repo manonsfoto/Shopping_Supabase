@@ -50,7 +50,7 @@ const AddItem = () => {
           min={0}
           className="w-40"
         />
-        <Button variant="outline">Button</Button>
+        <Button variant="outline">Add</Button>
       </form>
     </>
   );

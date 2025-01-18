@@ -1,5 +1,12 @@
+import { Button } from "../ui/button";
+
 const OrderCart = () => {
-  return <h2 className="font-semibold text-xl text-yellow-100">Order Cart</h2>;
+  return (
+    <>
+      {" "}
+      <Button variant="outline">Order</Button>
+    </>
+  );
 };
 
 export default OrderCart;

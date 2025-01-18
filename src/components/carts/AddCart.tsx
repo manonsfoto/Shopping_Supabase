@@ -18,7 +18,7 @@ const AddCart = () => {
 
     if (error) {
       console.error(error);
-      alert("this customer ID already exists 🙏");
+      alert("this customer ID already exists or does not exist 🙏");
     }
 
     customerId.value = "";
@@ -34,7 +34,7 @@ const AddCart = () => {
           min={0}
           className="w-40"
         />
-        <Button variant="outline">Button</Button>
+        <Button variant="outline">Add</Button>
       </form>
     </>
   );

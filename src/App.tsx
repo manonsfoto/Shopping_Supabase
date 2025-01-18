@@ -1,4 +1,5 @@
 import AddCart from "./components/carts/AddCart";
+import CartItemsList from "./components/carts/CartItemsList";
 import CartList from "./components/carts/CartList";
 import FillCart from "./components/carts/FillCart";
 import OrderCart from "./components/carts/OrderCart";
@@ -26,6 +27,7 @@ function App() {
         <AddCart />
         <CartList />
         <FillCart />
+        <CartItemsList />
         <OrderCart />
       </section>
       <section className="p-5 border-solid border-2 border-stone-200 rounded-2xl flex flex-col gap-4">

@@ -45,7 +45,7 @@ const AddCustomer = () => {
           className="w-40"
         />
         <Input name="email" type="email" placeholder="Email" className="w-40" />
-        <Button variant="outline">Button</Button>
+        <Button variant="outline">Add</Button>
       </form>
     </>
   );
