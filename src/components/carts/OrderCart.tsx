@@ -1,58 +1,57 @@
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { FormEvent, useState } from "react";
+import { FormEvent } from "react";
 import { supabase } from "@/utils/supabase/SetupSupabase";
-import { TOrder } from "@/utils/supabase/Types";
 
 const OrderCart = () => {
-  const [orders, setOrders] = useState<TOrder[] | []>([]);
-  function orderCart(e: FormEvent<HTMLFormElement>) {
+  async function orderCart(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     const { customer_id } = e.currentTarget;
 
-    async function addOrders() {
-      const { error, data } = await supabase
+    try {
+      const { data: orderData, error: orderError } = await supabase
         .from("orders")
         .insert({ customer_id: customer_id.value })
-        .select();
+        .select("id")
+        .single();
 
-      if (error) {
-        console.error(error);
-      }
-      if (data) {
-        setOrders(data);
-      }
-    }
+      if (orderError) throw orderError;
+      const newOrderId = orderData.id;
 
-    async function emptyCart() {
-      await supabase
+      const { data: cartItems, error: cartError } = await supabase
         .from("cart_items")
+        .select("*, items(name, price)")
+        .eq("customer_id", customer_id.value);
+
+      if (cartError) throw cartError;
+
+      const orderItemsData = cartItems.map((item) => ({
+        order_id: newOrderId,
+        item_name: item.items.name,
+        item_price: item.items.price,
+        item_quantity: item.quantity,
+      }));
+
+      const { error: orderItemsError } = await supabase
+        .from("order_items")
+        .insert(orderItemsData);
+
+      if (orderItemsError) throw orderItemsError;
+
+      const { error: emptyCartError } = await supabase
+        .from("carts")
         .delete()
         .eq("customer_id", customer_id.value);
+
+      if (emptyCartError) throw emptyCartError;
+
+      console.log("Order placed successfully!");
+    } catch (error) {
+      console.error("Error processing order:", error);
+    } finally {
+      customer_id.value = "";
     }
-
-    // async function addOrderItems() {
-    //   if (orders) {
-    //     const { error } = await supabase
-    //       .from("order_items")
-    //       .insert({
-    //         order_id: orders[0].id,
-    //         item_name: "bose",
-    //         item_price: "777",
-    //         item_quantity: "2",
-    //       });
-
-    //     if (error) {
-    //       console.error(error);
-    //     }
-    //   }
-    // }
-
-    addOrders();
-    // addOrderItems();
-    emptyCart();
-    customer_id.value = "";
   }
 
   return (

@@ -10,3 +10,6 @@ export type TOrderItems = Tables<"order_items">;
 export type TJoinedCartItems = TCartItems & {
   items: Pick<TItem, "name" | "price">;
 };
+export type TJoinedOrderItems = TOrderItems & {
+  orders: Pick<TOrder, "customer_id">;
+};
