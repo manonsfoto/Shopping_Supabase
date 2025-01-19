@@ -52,6 +52,7 @@ const AddItem: FC<AddItemProps> = ({ setRefreshItems }) => {
           type="number"
           placeholder="Price"
           min={0}
+          step="0.01"
           className="w-40"
         />
         <Button variant="outline">Add</Button>
