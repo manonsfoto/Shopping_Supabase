@@ -1,10 +1,12 @@
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { FormEvent } from "react";
+import { FC, FormEvent } from "react";
 import { TCart } from "@/utils/supabase/Types";
 import { supabase } from "@/utils/supabase/SetupSupabase";
-
-const AddCart = () => {
+interface AddCartProps {
+  setRefreshCarts: React.Dispatch<React.SetStateAction<boolean>>;
+}
+const AddCart: FC<AddCartProps> = ({ setRefreshCarts }) => {
   async function handleNewCart(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
@@ -22,6 +24,7 @@ const AddCart = () => {
     }
 
     customerId.value = "";
+    setRefreshCarts((prev) => !prev);
   }
   return (
     <>

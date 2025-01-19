@@ -1,9 +1,12 @@
 import { supabase } from "@/utils/supabase/SetupSupabase";
 import { TJoinedOrderItems } from "@/utils/supabase/Types";
 
-import { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
+interface OrderListProps {
+  refreshOrder: boolean;
+}
 
-const OrderList = () => {
+const OrderList: FC<OrderListProps> = ({ refreshOrder }) => {
   const [orders, setOrders] = useState<TJoinedOrderItems[] | []>([]);
 
   async function getOrderList() {
@@ -16,12 +19,11 @@ const OrderList = () => {
     }
     if (data) {
       setOrders(data);
-      console.log("Order Data:", data);
     }
   }
   useEffect(() => {
     getOrderList();
-  }, [setOrders]);
+  }, [refreshOrder]);
   return (
     <>
       <h2 className="font-semibold text-xl text-yellow-100">

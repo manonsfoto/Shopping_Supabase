@@ -1,10 +1,12 @@
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { FormEvent } from "react";
+import { FC, FormEvent } from "react";
 import { TItem } from "@/utils/supabase/Types";
 import { supabase } from "@/utils/supabase/SetupSupabase";
-
-const AddItem = () => {
+interface AddItemProps {
+  setRefreshItems: React.Dispatch<React.SetStateAction<boolean>>;
+}
+const AddItem: FC<AddItemProps> = ({ setRefreshItems }) => {
   async function handleNewItem(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
@@ -26,6 +28,8 @@ const AddItem = () => {
     itemName.value = "";
     description.value = "";
     price.value = "";
+
+    setRefreshItems((prev) => !prev);
   }
   return (
     <>

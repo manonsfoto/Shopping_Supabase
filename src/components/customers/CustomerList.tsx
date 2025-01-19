@@ -1,8 +1,12 @@
 import { supabase } from "@/utils/supabase/SetupSupabase";
 import { TCustomer } from "@/utils/supabase/Types";
-import { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 
-const CustomerList = () => {
+interface CustomerListProps {
+  refreshCustomers: boolean;
+}
+
+const CustomerList: FC<CustomerListProps> = ({ refreshCustomers }) => {
   const [customers, setCustomers] = useState<TCustomer[] | []>([]);
   async function getCustomerList() {
     const { error, data } = await supabase.from("customers").select();
@@ -16,7 +20,7 @@ const CustomerList = () => {
   }
   useEffect(() => {
     getCustomerList();
-  }, [setCustomers]);
+  }, [refreshCustomers]);
 
   return (
     <>

@@ -1,10 +1,14 @@
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { FormEvent } from "react";
+import { FC, FormEvent } from "react";
 import { TCustomer } from "@/utils/supabase/Types";
 import { supabase } from "@/utils/supabase/SetupSupabase";
 
-const AddCustomer = () => {
+interface AddCustomerProps {
+  setRefreshCustomers: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const AddCustomer: FC<AddCustomerProps> = ({ setRefreshCustomers }) => {
   async function handleNewCustomer(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
@@ -26,6 +30,8 @@ const AddCustomer = () => {
     firstName.value = "";
     lastName.value = "";
     email.value = "";
+
+    setRefreshCustomers((prev) => !prev);
   }
 
   return (

@@ -1,9 +1,11 @@
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { FormEvent } from "react";
+import { FC, FormEvent } from "react";
 import { supabase } from "@/utils/supabase/SetupSupabase";
-
-const OrderCart = () => {
+interface OrderCartProps {
+  setRefreshOrder: React.Dispatch<React.SetStateAction<boolean>>;
+}
+const OrderCart: FC<OrderCartProps> = ({ setRefreshOrder }) => {
   async function orderCart(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
@@ -51,6 +53,7 @@ const OrderCart = () => {
       console.error("Error processing order:", error);
     } finally {
       customer_id.value = "";
+      setRefreshOrder((prev) => !prev);
     }
   }
 

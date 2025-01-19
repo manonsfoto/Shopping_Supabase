@@ -1,8 +1,10 @@
 import { supabase } from "@/utils/supabase/SetupSupabase";
 import { TCart } from "@/utils/supabase/Types";
-import { useEffect, useState } from "react";
-
-const CartList = () => {
+import { FC, useEffect, useState } from "react";
+interface CartListProps {
+  refreshCarts: boolean;
+}
+const CartList: FC<CartListProps> = ({ refreshCarts }) => {
   const [carts, setCarts] = useState<TCart[] | []>([]);
   async function getCartList() {
     const { error, data } = await supabase.from("carts").select();
@@ -16,7 +18,7 @@ const CartList = () => {
   }
   useEffect(() => {
     getCartList();
-  }, [setCarts]);
+  }, [refreshCarts]);
 
   return (
     <>

@@ -1,8 +1,10 @@
 import { supabase } from "@/utils/supabase/SetupSupabase";
 import { TJoinedCartItems } from "@/utils/supabase/Types";
-import { useEffect, useState } from "react";
-
-const CartItemsList = () => {
+import { FC, useEffect, useState } from "react";
+interface CartItemsListProps {
+  refreshCartItems: boolean;
+}
+const CartItemsList: FC<CartItemsListProps> = ({ refreshCartItems }) => {
   const [cartItems, setCartItems] = useState<TJoinedCartItems[] | []>([]);
   async function getCartItemsList() {
     const { error, data } = await supabase
@@ -14,12 +16,11 @@ const CartItemsList = () => {
     }
     if (data) {
       setCartItems(data);
-      console.log("joined cart items:", data);
     }
   }
   useEffect(() => {
     getCartItemsList();
-  }, [setCartItems]);
+  }, [refreshCartItems]);
 
   return (
     <>

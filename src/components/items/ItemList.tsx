@@ -1,8 +1,10 @@
 import { supabase } from "@/utils/supabase/SetupSupabase";
 import { TItem } from "@/utils/supabase/Types";
-import { useEffect, useState } from "react";
-
-const ItemList = () => {
+import { FC, useEffect, useState } from "react";
+interface ItemListProps {
+  refreshItems: boolean;
+}
+const ItemList: FC<ItemListProps> = ({ refreshItems }) => {
   const [items, setItems] = useState<TItem[] | []>([]);
   async function getItemList() {
     const { error, data } = await supabase.from("items").select();
@@ -12,12 +14,11 @@ const ItemList = () => {
     }
     if (data) {
       setItems(data);
-      console.log("Item Data:", data);
     }
   }
   useEffect(() => {
     getItemList();
-  }, [setItems]);
+  }, [refreshItems]);
 
   return (
     <>
