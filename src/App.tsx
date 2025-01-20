@@ -34,7 +34,10 @@ function App() {
         <AddCart setRefreshCarts={setRefreshCarts} />
         <CartList refreshCarts={refreshCarts} />
         <FillCart setRefreshCartItems={setRefreshCartItems} />
-        <CartItemsList refreshCartItems={refreshCartItems} />
+        <CartItemsList
+          refreshCartItems={refreshCartItems}
+          refreshOrder={refreshOrder}
+        />
         <OrderCart setRefreshOrder={setRefreshOrder} />
       </section>
       <section className="p-5 border-solid border-2 border-stone-200 rounded-2xl flex flex-col gap-4">
