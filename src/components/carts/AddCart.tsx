@@ -20,7 +20,9 @@ const AddCart: FC<AddCartProps> = ({ setRefreshCarts }) => {
 
     if (error) {
       console.error(error);
-      alert("this customer ID already exists or does not exist 🙏");
+      alert(
+        "the cart for this customer ID already exists or the customer does not exist🙏"
+      );
     }
 
     customerId.value = "";
