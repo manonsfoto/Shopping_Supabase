@@ -51,6 +51,7 @@ const OrderCart: FC<OrderCartProps> = ({ setRefreshOrder }) => {
       console.log("Order placed successfully!");
     } catch (error) {
       console.error("Error processing order:", error);
+      alert("Error processing order🙏");
     } finally {
       customer_id.value = "";
       setRefreshOrder((prev) => !prev);

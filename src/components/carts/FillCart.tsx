@@ -23,6 +23,7 @@ const FillCart: FC<FillCarProps> = ({ setRefreshCartItems }) => {
 
     if (error) {
       console.error(error);
+      alert("the cart already exists or does not exist🙏");
     }
 
     cart_id.value = "";
